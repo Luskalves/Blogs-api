@@ -1,0 +1,1 @@
+const User = (queryInterface, sequelize) 
