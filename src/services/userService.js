@@ -43,6 +43,18 @@ const userService = {
     return token;
   },
 
+  async getById(id) {
+    const response = await User.findOne({ where: { id } });
+    if (!response) handleError('User does not exist', '404');
+    const user = {
+      id: Number(id),
+      displayName: response.displayName,
+      email: response.email,
+      image: response.image,
+    };
+    return user;
+  },
+
   async validateToken(token) {
     const isValid = jwt.decode(token, process.env.JWT_SECRET);
     if (!isValid) handleError('Expired or invalid token', '401');

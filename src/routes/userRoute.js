@@ -6,6 +6,8 @@ const userRoute = Router();
 
 userRoute.get('/', rescue(userController.get));
 
+userRoute.get('/:id', rescue(userController.getById));
+
 userRoute.post('/', rescue(userController.post));
 
 module.exports = userRoute;

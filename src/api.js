@@ -18,6 +18,8 @@ app.use((err, _req, res, _next) => {
       return res.status(400).json({ message });
     case '401':
       return res.status(401).json({ message });
+    case '404':
+      return res.status(404).json({ message });
     case 'registred':
       return res.status(409).json({ message });
     default:
