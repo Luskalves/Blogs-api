@@ -1,12 +1,13 @@
 const express = require('express');
 const loginRoute = require('./routes/loginRoute');
-// ...
+const userRoute = require('./routes/userRoute');
 
 const app = express();
 
 app.use(express.json());
 
 app.use('/login', loginRoute);
+app.use('/user', userRoute);
 // ...
 
 app.use((err, _req, res, _next) => {
@@ -15,6 +16,10 @@ app.use((err, _req, res, _next) => {
   switch (name) {
     case 'invalid':
       return res.status(400).json({ message });
+    case '401':
+      return res.status(401).json({ message });
+    case 'registred':
+      return res.status(409).json({ message });
     default:
       return res.status(500).json(err.message);
   }

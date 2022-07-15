@@ -1,7 +1,7 @@
 const Joi = require('joi');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const model = require('../database/models');
+const { User } = require('../database/models');
 const handleError = require('../errors/handleError');
 
 const schema = Joi.object({
@@ -13,9 +13,8 @@ const loginService = {
   async newUser(email, password) {
     if (!email || !password) handleError('Some required fields are missing', 'invalid');
     const { error } = schema.validate({ email, password });
-    const exists = await model.User.findOne({ where: { email } });
-    // const exists = await User.findAll();
-    console.log('exists:', exists);
+    const exists = await User.findOne({ where: { email } });
+
     if (error || !exists) handleError('Invalid fields', 'invalid');
 
     const token = jwt.sign({ email }, process.env.JWT_SECRET);
