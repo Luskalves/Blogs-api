@@ -56,6 +56,7 @@ const userService = {
   },
 
   async validateToken(token) {
+    if (!token) handleError('Token not found', '401');
     const isValid = jwt.decode(token, process.env.JWT_SECRET);
     if (!isValid) handleError('Expired or invalid token', '401');
   },
