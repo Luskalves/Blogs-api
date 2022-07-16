@@ -9,6 +9,11 @@ const schema = Joi.object({
 });
 
 const categoriesService = {
+  async getAll() {
+    const allCategories = Category.findAll();
+    return allCategories;
+  },
+  
   async newCategory(name) {
     const { error } = schema.validate({ name });
     if (error) handleError(error.message, 'invalid');
