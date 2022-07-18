@@ -8,6 +8,11 @@ const Category = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
   },
   { timestamps: false });
+
+  // Category.associate = (models) => {
+  //   Category.hasMany(models.PostCategory, 
+  //     { foreignKey: 'id', as: 'categoryId' });
+  // };
   
   return Category;
 }
