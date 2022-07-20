@@ -4,20 +4,32 @@ const model = require('../database/models');
 const handleError = require('../errors/handleError');
 
 const date = new Date();
+const handleErrMessage = 'Some required fields are missing';
 
 const schema = Joi.object({
   title: Joi.string().required().messages({
-    'string.empty': 'Some required fields are missing',
-    'any.required': 'Some required fields are missing',
+    'string.empty': handleErrMessage,
+    'any.required': handleErrMessage,
   }),
   content: Joi.string().required().messages({
-    'string.empty': 'Some required fields are missing',
-    'any.required': 'Some required fields are missing',
+    'string.empty': handleErrMessage,
+    'any.required': handleErrMessage,
   }),
   categoryIds: Joi.array().min(1).required().messages({
     'array.base': '"categoryIds" not found',
     'array.min': '"categoryIds" not found',
     'any.required': '"categoryIds" not found',
+  }),
+});
+
+const schemaPut = Joi.object({
+  title: Joi.string().required().messages({
+    'string.empty': handleErrMessage,
+    'any.required': handleErrMessage,
+  }),
+  content: Joi.string().required().messages({
+    'string.empty': handleErrMessage,
+    'any.required': handleErrMessage,
   }),
 });
 
@@ -59,7 +71,6 @@ const postService = {
         },
       ],
     });
-    console.log(postId);
     if (!postId) handleError('Post does not exist', '404');
 
     return postId;
@@ -97,6 +108,37 @@ const postService = {
   async newBlogCategory(id, categories) {
     await Promise.all(categories
       .map((c) => model.PostCategory.create({ postId: id, categoryId: c })));
+  },
+
+  async changePost(id, body) {
+    const { error } = schemaPut.validate(body);
+    if (error) handleError(error.message, 'invalid');
+    await model.BlogPost.update({ title: body.title, content: body.content }, {
+      where: { id },
+    });
+
+    const postChanged = await model.BlogPost.findOne({
+      where: { id },
+      include: [
+        { model: model.User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: model.Category, as: 'categories', attributes: { exclude: ['PostCategory'] } },
+      ],
+    });
+
+    return postChanged;
+  },
+
+  async validateUserToken(id, token) {
+    const user = await model.User.findOne({ where: { id } });
+    const { email } = jwt.decode(token);
+    console.log(user);
+    console.log(email);
+
+    if (user.email !== email) {
+      handleError('Unauthorized user', '401');
+    }
+
+    return { id, token };
   },
 };
 

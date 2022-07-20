@@ -10,4 +10,6 @@ postRoute.get('/:id', rescue(postController.getById));
 
 postRoute.post('/', rescue(postController.post));
 
+postRoute.put('/:id', rescue(postController.put));
+
 module.exports = postRoute;

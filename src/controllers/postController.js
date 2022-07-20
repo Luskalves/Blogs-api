@@ -32,6 +32,17 @@ const postController = {
     
     res.status(201).json(newPost);
   },
+
+  async put(req, res) {
+    const { id } = req.params;
+    const token = req.headers.authorization;
+    await userService.validateToken(token);
+    await postService.validateUserToken(id, token);
+
+    const postChanged = await postService.changePost(id, req.body);
+
+    res.status(200).json(postChanged);
+  },
 };
 
 module.exports = postController;
