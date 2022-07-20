@@ -22,23 +22,21 @@ const schema = Joi.object({
 });
 
 const postService = {
-  async getAll() { 
-    const teste = await model.PostCategories.findAll();
+  async getAll() {
     const blogPost = await model.BlogPost.findAll({
-      attributes: { exclude: ['UserId'] },
       include: [
         {
           model: model.User,
           as: 'user',
+          attributes: { exclude: ['password'] },
         },
         {
           model: model.Category,
-          as: 'Categories',
+          as: 'categories',
+          attributes: { exclude: ['PostCategory'] },
         },
       ],
     });
-
-    console.log(teste);
 
     const category = await model.Category.findAll(); 
 
@@ -52,7 +50,6 @@ const postService = {
     const { email } = jwt.decode(token);
     const { id } = await model.User.findOne({ where: { email } });
     const { title, content } = body;
-    console.log(email);
 
     await model.BlogPost.create({ title, 
       content, 
