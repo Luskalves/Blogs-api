@@ -11,6 +11,15 @@ const postController = {
     res.status(200).json([...posts, { category }]);
   },
 
+  async getById(req, res) {
+    const { id } = req.params;
+    const token = req.headers.authorization;
+    await userService.validateToken(token);
+    const postId = await postService.getById(id);
+
+    res.status(200).json(postId);
+  },
+
   async post(req, res) {
     const { categoryIds } = req.body;
     const token = req.headers.authorization;

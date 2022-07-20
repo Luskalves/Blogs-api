@@ -6,6 +6,8 @@ const postRoute = Router();
 
 postRoute.get('/', rescue(postController.get));
 
+postRoute.get('/:id', rescue(postController.getById));
+
 postRoute.post('/', rescue(postController.post));
 
 module.exports = postRoute;

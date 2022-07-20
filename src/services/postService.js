@@ -43,6 +43,28 @@ const postService = {
     return [blogPost, category];
   },
 
+  async getById(id) {
+    const postId = await model.BlogPost.findOne({
+      where: { id },
+      include: [
+        {
+          model: model.User,
+          as: 'user',
+          attributes: { exclude: ['password'] },
+        },
+        {
+          model: model.Category,
+          as: 'categories',
+          attributes: { exclude: ['PostCategory'] },
+        },
+      ],
+    });
+    console.log(postId);
+    if (!postId) handleError('Post does not exist', '404');
+
+    return postId;
+  },
+
   async newPost(body, token) {
     const { error } = schema.validate(body);
     if (error) handleError(error.message, 'invalid'); 
