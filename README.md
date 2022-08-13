@@ -28,7 +28,7 @@ Tirando os aquivos que foram citados a cima, todos os outros que estão dentro d
 - DotEnv
 - VsCode
 
-### Minhas contribuições:
+## Minhas contribuições:
 
 - ### Banco de dados: <br>
 Eu desenvolvi utiliazndo ```JavaScript```,  ```Sequelize``` e ```Sequelize-Cli``` os models e as migrations da api, fazendo a comunicação entre o banco de dados, criando as tabelas e colunas de ```User```, ```Category```, ```PostCategory``` e ```BlogPost```.
