@@ -46,6 +46,6 @@ A rota ```/post``` <s>a rota mais trabalhosa delas</s> através de uma requisiç
 ## Como usar a aplicação:<br>
 - Clone o repositório.
 - Faça as instalações das dependências com o ```npm install```.
-- Crie um arquivo ```.env``` e faça os ajustes das variáveis de ambiente nele ou entre na pasta ```./src/datavase/config``` e altere o arquivo ```config.ts``` para utilizar as suas variaveis locais de ambiente.
+- Crie um arquivo ```.env``` e faça os ajustes das variáveis de ambiente nele ou entre na pasta ```./src/datavase/config``` e altere o arquivo ```config.ts``` para utilizar as suas variáveis locais de ambiente.
 - Utilize o ```npm start``` para iniciar a aplicação.
 - Recomendo usar algum software de consumo de API's como o Postman ou extenção do ```VsCode``` como o ```Thunder Client``` para consumir a API.
