@@ -12,6 +12,23 @@ já existia a pasta ```/database``` com as pastas filhas ```/config```, ```/migr
 
 Os arquivos ```api.js``` e ```server.js```, onde em ```server.js``` não precisei fazer alterações mas em ```api.js``` havia apenas um código simples apenas com a criação do ```app``` usando o ```express```.
 
+#### Código preparado pela Trybe no arquivo ```api.js```
+```
+const express = require('express');
+
+// ...
+
+const app = express();
+
+app.use(express.json());
+
+// ...
+
+// É importante exportar a constante `app`,
+// para que possa ser utilizada pelo arquivo `src/server.js`
+module.exports = app;
+```
+
 ## O que eu fiz:
 
 Tirando os aquivos que foram citados a cima, todos os outros que estão dentro da pasta ```./src``` foram criados ou alterados por mim.
