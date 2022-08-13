@@ -33,7 +33,7 @@ Tirando os aquivos que foram citados a cima, todos os outros que estão dentro d
 - ### Banco de dados: <br>
 Eu desenvolvi utiliazndo ```JavaScript```,  ```Sequelize``` e ```Sequelize-Cli``` os models e as migrations da api, fazendo a comunicação entre o banco de dados, criando as tabelas e colunas de ```User```, ```Category```, ```PostCategory``` e ```BlogPost```.
 
-- ### Rotas:<br>
+### Rotas:<br>
 Desenvolvi as rotas de ```/login```, ```/users```, ```/categories``` e ```/post```. <br><br>
 Na rota```/login``` o usuário apenas pode logar se tiver um email redistrado no banco de dados, se sim ele recebe um ```token``` de acesso gerado pelo ```JWT``` que contem a assinatura do email do usuário.<br>
 
