@@ -33,7 +33,7 @@ module.exports = app;
 
 Tirando os aquivos que foram citados a cima, todos os outros que estão dentro da pasta ```./src``` foram criados ou alterados por mim.
 
-### Tecnologias que utilizei durante o projeto:
+### Tecnologias que utilizei durante o desenvolvimento do projeto:
 - JavaScript
 - Express, Express-Rescue
 - Sequelize, Sequelize-Cli
